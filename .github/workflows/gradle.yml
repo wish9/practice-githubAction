@@ -32,7 +32,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Add permission # '~/gradlew' is not executable. 에러 때문에 추가
-      run: chmod +x gradlew
+      run: chmod +x gradlew # '~/gradlew' is not executable. 에러 때문에 추가
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
