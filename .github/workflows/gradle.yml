@@ -16,6 +16,9 @@ on:
 permissions:
   contents: read
 
+env:
+  S3_BUCKET_NAME: be-58-wish9
+
 jobs:
   build:
 
@@ -28,7 +31,27 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - name: Add permission # '~/gradlew' is not executable. 에러 때문에 추가
+      run: chmod +x gradlew
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+
+      # build한 후 프로젝트를 압축
+    - name: Make zip file
+      run: zip -r ./practice-deploy.zip .
+      shell: bash
+
+      # Access Key와 Secret Access Key를 통해 권한을 확인
+      # Access Key와 Secret Key는 직접 작성 X (깃 설정에서 추가)
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려와진다.
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려와진다.
+        aws-region: ap-northeast-2
+
+      # 압축한 프로젝트를 S3로 전송
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
