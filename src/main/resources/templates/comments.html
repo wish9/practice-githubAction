@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>댓글 목록</title>
+</head>
+<body>
+<h1>댓글 목록</h1>
+<table>
+  <thead>
+  <tr>
+    <th>이름</th>
+    <th>댓글</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="comment : ${comments}">
+    <td th:text="${comment.name}"></td>
+    <td th:text="${comment.comment}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>댓글 쓰기</h2>
+<form method="post" action="/comments">
+  <label for="name">이름:</label>
+  <input type="text" name="name" id="name" required>
+  <br>
+  <label for="comment">댓글:</label>
+  <textarea name="comment" id="comment" rows="5" required></textarea>
+  <br>
+  <button type="submit">저장</button>
+</form>
+</body>
+</html>

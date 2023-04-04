@@ -9,6 +9,8 @@ public class Hello {
     @GetMapping("/")
     public String hello () {
 
-        return "Practice-JQuery";
+        return "hong";
     }
+
+
 }

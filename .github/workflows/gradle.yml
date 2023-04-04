@@ -52,6 +52,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려와진다.
         aws-region: ap-northeast-2
 
+    - name: Retrieve password from AWS Parameter Store # db에 comment 남기는 용으로 rds 연결하려고 사용
+      run: |
+        PASSWORD=$(aws ssm get-parameter --name "/spring-boot-aws/be-58-wish9/spring.datasource.password" --with-decryption --query "Parameter.Value" --output text)
+        echo "DB_PASSWORD=$PASSWORD" >> $GITHUB_ENV
+
       # 압축한 프로젝트를 S3로 전송
     - name: Upload to S3
       run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
