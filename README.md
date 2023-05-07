@@ -1,3 +1,13 @@
+[[Cloud] 배포 자동화 블로그 포스팅 링크](https://velog.io/@wish17/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%B8%A0-%EB%B0%B1%EC%97%94%EB%93%9C-%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84-75%EC%9D%BC%EC%B0%A8-Cloud-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94)
+
+# Automated Deployment
+
+> 배포 자동화
+- 한번의 클릭 혹은 명령어 입력을 통해 전체 배포 과정을 자동으로 진행하는 것
+    - 시간절약
+    - 휴먼 에러(Human Error)를 방지
+
+
 ### Github Actions를 통한 배포 자동화
 
 > [Github Actions](https://docs.github.com/en/actions)
